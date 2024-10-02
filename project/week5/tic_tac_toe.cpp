@@ -94,10 +94,14 @@ int main()
         }
 
         // 대각선 체크
-        if ((board[0][0] == currentUser && board[1][1] == currentUser && board[2][2] == currentUser) ||
-            (board[0][2] == currentUser && board[1][1] == currentUser && board[2][0] == currentUser))
+        if (board[0][0] == currentUser && board[1][1] == currentUser && board[2][2] == currentUser)
         {
-            cout << "대각선에 모두 돌이 놓였습니다.";
+            cout << "왼쪽 위에서 오른쪽 아래 대각선에 모두 돌이 놓였습니다.";
+            win = true;
+        }
+        if (board[0][2] == currentUser && board[1][1] == currentUser && board[2][0] == currentUser)
+        {
+            cout << "오른쪽 위에서 왼쪽 아래 대각선에 모두 돌이 놓였습니다.";
             win = true;
         }
 
