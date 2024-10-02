@@ -8,6 +8,8 @@ int main()
     string names[maxPeople];
     int ages[maxPeople];
     cout << maxPeople << "명의 회원 정보를 입력해주세요." << endl;
+
+    // 사용자로부터 이름과 나이를 입력받음
     for (int i = 0; i < maxPeople; i++)
     {
         cout << "사람 " << i + 1 << "의 이름: ";
@@ -17,8 +19,9 @@ int main()
     }
 
     int nums;
-    while (1)
+    while (true) // 무한 루프
     {
+        // 메뉴 출력
         cout << "\n1. 가장 나이가 많은 사람 출력\n";
         cout << "\n2. 가장 나이가 적은 사람 출력\n";
         cout << "\n3. 종료\n";
@@ -61,13 +64,14 @@ int main()
         {
             // 프로그램 종료
             cout << "프로그램을 종료합니다.\n";
-            break;
+            break; // 루프 탈출
         }
         else
         {
-
+            // 유효하지 않은 입력 처리
             cout << "잘못된 입력입니다. 다시 시도하세요.\n";
         }
     }
+
     return 0;
 }
