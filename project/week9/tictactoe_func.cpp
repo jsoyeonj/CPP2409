@@ -1,6 +1,6 @@
 #include <iostream>
 using namespace std;
-const int numCell = 4; // 보드판의 가로 세로 길이
+const int numCell = 15; // 보드판의 가로 세로 길이
 bool isValid(int x, int y, const char board[][numCell])
 {
     // 좌표 유효성 체크
