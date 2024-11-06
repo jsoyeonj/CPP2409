@@ -1,7 +1,7 @@
-
 #include "user.h"
 #include <iostream>
 #include <string>
+#include <vector>
 using namespace std;
 
 const int mapX = 5;
@@ -9,25 +9,25 @@ const int mapY = 5;
 
 // 사용자 정의 함수
 bool checkXY(int user_x, int mapX, int user_y, int mapY);
-void displayMap(int map[][mapX], int user_x, int user_y);
-bool checkGoal(int map[][mapX], int user_x, int user_y);
-void checkState(int map[][mapX], int user_x, int user_y, User &user); // 상태 체크 함수 선언
-bool CheckUser(const User &user);                                     // 체력 체크 함수 선언
+void displayMap(const vector<vector<int>> &map, int user_x, int user_y);
+bool checkGoal(const vector<vector<int>> &map, int user_x, int user_y);
+void checkState(const vector<vector<int>> &map, int user_x, int user_y, User &user); // 상태 체크 함수 선언
+bool CheckUser(const User &user);                                                    // 체력 체크 함수 선언
 
 // 메인 함수
 int main()
 {
-    int map[mapY][mapX] = {{0, 1, 2, 0, 4},
-                           {1, 0, 0, 2, 0},
-                           {0, 0, 0, 0, 0},
-                           {0, 2, 3, 0, 0},
-                           {3, 0, 0, 0, 2}};
+    vector<vector<int>> map = {{0, 1, 2, 0, 4},
+                               {1, 0, 0, 2, 0},
+                               {0, 0, 0, 0, 0},
+                               {0, 2, 3, 0, 0},
+                               {3, 0, 0, 0, 2}};
 
     int user_x = 0;
     int user_y = 0;
     User user; // User 객체 생성
 
-    while (1)
+    while (true)
     {
         cout << "현재 체력: " << user.GetHP() << " ";
         string user_input = "";
@@ -73,7 +73,7 @@ int main()
         {
             user_x -= 1;
             bool inMap = checkXY(user_x, mapX, user_y, mapY);
-            if (inMap == false)
+            if (!inMap)
             {
                 cout << "맵을 벗어났습니다. 다시 돌아갑니다." << endl;
                 user_x += 1;
@@ -119,7 +119,7 @@ int main()
         }
 
         bool finish = checkGoal(map, user_x, user_y);
-        if (finish == true)
+        if (finish)
         {
             cout << "목적지에 도착했습니다! 축하합니다!" << endl;
             cout << "게임을 종료합니다." << endl;
@@ -135,7 +135,7 @@ int main()
 }
 
 // 상태 체크 함수
-void checkState(int map[][mapX], int user_x, int user_y, User &user)
+void checkState(const vector<vector<int>> &map, int user_x, int user_y, User &user)
 {
     int posState = map[user_y][user_x];
     if (posState == 2)
@@ -167,7 +167,7 @@ bool checkXY(int user_x, int mapX, int user_y, int mapY)
 }
 
 // 지도와 사용자 위치 출력하는 함수
-void displayMap(int map[][mapX], int user_x, int user_y)
+void displayMap(const vector<vector<int>> &map, int user_x, int user_y)
 {
     for (int i = 0; i < mapY; i++)
     {
@@ -206,9 +206,8 @@ void displayMap(int map[][mapX], int user_x, int user_y)
 }
 
 // 유저의 위치가 목적지인지 체크하는 함수
-bool checkGoal(int map[][mapX], int user_x, int user_y)
+bool checkGoal(const vector<vector<int>> &map, int user_x, int user_y)
 {
-    // 목적지 도착하면
     if (map[user_y][user_x] == 4)
     {
         return true;
