@@ -52,7 +52,7 @@ public:
         itemCnt++;
     }
 
-    virtual void DoAttack() override = 0; // 여전히 추상
+    virtual void DoAttack() override = 0; 
 };
 
 class Magician : public UserImpl
